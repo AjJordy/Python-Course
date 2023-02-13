@@ -69,3 +69,15 @@ git clone https://github.com/pdf/ubuntu-mono-powerline-ttf.git ~/.fonts/ubuntu-m
 fc-cache -vf
 
 ```
+
+### Configuração do vscode
+
+```json
+{
+	"code-runner.runInTerminal": true,
+	"code-runner.clearPreviousOutput": true,
+	"code-runner.executorMap": {
+		"python": "clear ; python -u",
+	}
+}
+```
