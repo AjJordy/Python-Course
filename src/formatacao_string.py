@@ -1,4 +1,5 @@
 """
+Aula 26
 Formatação básica de strings
 s - string
 d - int

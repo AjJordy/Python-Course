@@ -1,4 +1,5 @@
 """
+Aula 27
 Fatiamento de strings
 [i:f:p] [::]
 i - inicio
