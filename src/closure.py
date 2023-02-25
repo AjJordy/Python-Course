@@ -1,4 +1,3 @@
-
 """
 Função que cria outra função
 """

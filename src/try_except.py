@@ -1,13 +1,29 @@
 """
-Aula 29
-Introdução ao try/except
 try -> tentar executar o código
 except -> ocorreu algum erro ao tentar executar
 """
 
-numero_str = input('Vou dobrar o numero que vc digitar: ')
 try:
-	numero_float = float(numero_str)
-	print(f'O dobro de {numero_str} é {numero_float * 2:.2f}')
-except Exception as e:
-	print('Erro:',str(e))
+	a = 18
+	b = 0
+	c = a / b
+
+except ZeroDivisionError: 
+	print('Zero division Error')
+
+except NameError:
+	print('Name Error not found')
+
+except Exception as error:
+	print('Error unknow:',error)
+
+else:
+	print('Without error')
+
+finally:
+	print('Finish')
+
+
+# Create my own Exception
+print('----- Create my own Exception -----')
+raise ValueError('My error')
