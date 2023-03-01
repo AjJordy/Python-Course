@@ -26,7 +26,7 @@ def zipper(lista_1, lista_2):
 	
 print('Meu zipper:\t',zipper(lista_1, lista_2))
 print('Zip python:\t',list(zip(lista_1, lista_2)))
-print('longest:\t', list(zip_longest(lista_1, lista_2)))
+print('longest:\t', list(zip_longest(lista_1, lista_2, fillvalue='Sem cidade')))
 
 
 
