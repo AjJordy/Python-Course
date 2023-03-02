@@ -38,11 +38,10 @@ print_iter(produtos)
 print_iter(list(novos_produtos))
 
 
-lista_multiplicada = list(
-	map(
-		lambda x: x * 3, 
-		[1,2,3,4]
-	)
+lista_multiplicada = map(
+	lambda x: x * 3, 
+	[1,2,3,4]
 )
 
-print(lista_multiplicada)
+
+print_iter(lista_multiplicada)
