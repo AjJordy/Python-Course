@@ -1,3 +1,4 @@
+import os
 
 path_file = 'test.txt'
 
@@ -27,3 +28,7 @@ with open(path_file, 'w+', encoding='utf-8') as file:
 	file.write('Hello world 2!\n')
 	file.seek(0,0) # Return to begin of file
 	print(file.read())
+
+
+os.rename(path_file, 'teste2.txt')
+os.remove('teste2.txt') # or os.unlink()
