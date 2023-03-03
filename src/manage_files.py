@@ -12,18 +12,18 @@ path_file = 'test.txt'
 
 # ----- BETTER WAY -----
 # Write
-with open(path_file, 'w') as file:
+with open(path_file, 'w', encoding='utf-8') as file:
 	file.write('Hello world!\n')
 
 # Read	
-with open(path_file, 'r') as file:
+with open(path_file, 'r', encoding='utf-8') as file:
 	print(file.read())
 
 
 print('-' * 10)
 
 # Read and write
-with open(path_file, 'w+') as file:
+with open(path_file, 'w+', encoding='utf-8') as file:
 	file.write('Hello world 2!\n')
 	file.seek(0,0) # Return to begin of file
 	print(file.read())
