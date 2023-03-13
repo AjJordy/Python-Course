@@ -1,5 +1,15 @@
 {
 	"python.analysis.typeCheckingMode": "basic",
 	"code-runner.clearPreviousOutput": true,
-	"editor.rulers": [80]
+	"editor.rulers": [80],
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.fixAll.unusedImports": true,
+		"source.organizeImports": true,
+	},
+	"python.languageServer": "Pylance",
+	"python.formatting.autopep8Args": [
+		"--indent-size=4",
+		"--max-line-length=80",
+	]
 }
