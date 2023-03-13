@@ -11,5 +11,8 @@
 	"python.formatting.autopep8Args": [
 		"--indent-size=4",
 		"--max-line-length=80",
-	]
+	],
+	"code-runner.executorMap": {
+		"python": "C:\\Users\\eonix\\Desktop\\Projetos\\Backup\\Curso-Python\\venv\\Scripts\\activate.bat && python -u",
+	}
 }
