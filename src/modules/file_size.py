@@ -40,4 +40,8 @@ for root, dirs, files in os.walk(path):
 		print('  dir:', dir_)
 
 	for file_ in files:
-		print('  file:', file_)
+		path = os.path.join(root, file_)
+		# tamanho = os.path.getsize(path)
+		stats = os.stat(path)
+		tamanho = stats.st_size
+		print('  file:', file_, formata_tamanho(tamanho))
