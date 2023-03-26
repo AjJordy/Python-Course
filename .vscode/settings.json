@@ -7,13 +7,15 @@
 		"source.fixAll.unusedImports": true,
 		"source.organizeImports": true,
 	},
+	"editor.fontFamily": "'Fira Code', Consolas, 'Dank Mono', 'Courier New', monospace",
+	"editor.fontLigatures": true,
 	"python.languageServer": "Pylance",
 	"python.formatting.autopep8Args": [
 		"--indent-size=4",
 		"--max-line-length=80",
 	],
 	"code-runner.executorMap": {
-		"python": "clear; C:\\Users\\eonix\\Desktop\\Projetos\\Backup\\Curso-Python\\venv\\Scripts\\activate.bat; python $fullFileName",
+		"python": "clear; D:\\Projects\\Curso-Python\\venv\\Scripts\\activate.bat; python $fullFileName",
 	},
 	"code-runner.runInTerminal": true
 }
