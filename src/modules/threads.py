@@ -23,6 +23,21 @@ t2.start()
 t3 = MeuThread('Thread 3', 5)
 t3.start()
 
-for i in range(20):
+
+def vai_demorar(texto, tempo):
+	sleep(tempo)
+	print(texto)
+
+
+t = Thread(target=vai_demorar, args=('Olá mundo', 7))
+t.start()
+t.join() # Esperando thread
+
+# while t.is_alive():
+# 	print('Esperando thread')
+# 	sleep(2)
+
+for i in range(10):
 	print(i)
 	sleep(1)
+
