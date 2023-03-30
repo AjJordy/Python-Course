@@ -1,4 +1,4 @@
-from threading import Thread
+from threading import Lock, Thread
 from time import sleep
 
 
@@ -6,8 +6,16 @@ class MeuThread(Thread):
 	def __init__(self, texto, tempo):
 		self.texto = texto
 		self.tempo = tempo 
+		self.lock = Lock()
 
 		super().__init__()
+
+	def example(self):
+		self.lock.acquire() # Trancou o método
+		print('Teste')
+		sleep(3)
+		self.lock.release() # Destrancou		
+
 
 	def run(self):
 		sleep(self.tempo)
