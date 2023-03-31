@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from PyPDF2 import PdfReader, PdfWriter
+from PyPDF2 import PdfMerger, PdfReader, PdfWriter
 
 PASTA_RAIZ = Path(__file__).parent
 PASTA_ORIGINAIS = PASTA_RAIZ / 'pdfs_originais'
@@ -33,4 +33,17 @@ with open(PASTA_NOVA / 'newPDF.pdf', 'wb') as arquivo:
 		writer1.add_page(page)
 	writer1.write(arquivo)
 
+
+merger = PdfMerger()
+
+files = [
+	PASTA_NOVA / 'page0.pdf',
+	PASTA_NOVA / 'page1.pdf',
+]
+
+for file in files:
+	merger.append(file)
+
+with open(PASTA_NOVA / 'MERGED.pdf', 'wb') as file:
+	merger.write(file)
 
