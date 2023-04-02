@@ -1,6 +1,4 @@
-{
-	"python.analysis.typeCheckingMode": "basic",
-	"code-runner.clearPreviousOutput": true,
+{	
 	"editor.rulers": [80],
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true,
@@ -9,6 +7,7 @@
 	},
 	"editor.fontFamily": "'Fira Code', Consolas, 'Dank Mono', 'Courier New', monospace",
 	"editor.fontLigatures": true,
+	"python.analysis.typeCheckingMode": "basic",
 	"python.languageServer": "Pylance",
 	"python.formatting.autopep8Args": [
 		"--indent-size=4",
@@ -17,5 +16,6 @@
 	"code-runner.executorMap": {
 		"python": "clear; D:\\Projects\\Curso-Python\\venv\\Scripts\\activate.bat; python $fullFileName",
 	},
-	"code-runner.runInTerminal": true
+	"code-runner.runInTerminal": true,
+	"code-runner.clearPreviousOutput": true,
 }
