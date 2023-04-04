@@ -14,7 +14,7 @@
 		"--max-line-length=80",
 	],
 	"code-runner.executorMap": {
-		"python": "clear; C:\\Users\\eonix\\Desktop\\Projetos\\Backup\\Curso-Python\\venv\\Scripts\\activate.bat; python $fullFileName",
+		"python": "clear; .\\venv\\Scripts\\activate.bat; python $fullFileName",
 	},
 	"code-runner.runInTerminal": true,
 	"code-runner.clearPreviousOutput": true,

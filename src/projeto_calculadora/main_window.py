@@ -30,7 +30,7 @@ class MainWindow(QMainWindow):
 		self.vLayout.addWidget(self.display)	
 
 		# Grid
-		self.buttonsGrid = ButtonsGrid()
+		self.buttonsGrid = ButtonsGrid(self.display)
 		self.vLayout.addLayout(self.buttonsGrid)		
 
 		# Ultima coisa a ser feita

@@ -8,3 +8,11 @@ def isNumOrDot(string: str) -> bool:
 
 def isEmpty(string: str) -> bool:
 	return len(string) == 0
+
+def isValidNumber(string: str):
+	try:
+		float(string)
+		return True
+	except ValueError:
+		return False
+		print('Deu ruim')
