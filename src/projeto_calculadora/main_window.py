@@ -1,5 +1,6 @@
 
 from display import Display
+from info import Info
 from PySide6.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QWidget
 
 
@@ -18,6 +19,11 @@ class MainWindow(QMainWindow):
 		# self.label1.setStyleSheet('font-size: 50px;')
 		# self.vLayout.addWidget(self.label1)			
 
+		# Info
+		info = Info('2.0 ^ 10.0 = 1024')
+		self.vLayout.addWidget(info)
+
+		# Display
 		self.display = Display()
 		self.display.setPlaceholderText('Digite algo')
 		self.vLayout.addWidget(self.display)		
