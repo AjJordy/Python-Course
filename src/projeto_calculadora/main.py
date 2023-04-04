@@ -15,3 +15,4 @@ if __name__ == '__main__':
 	window.show()
 	app.setWindowIcon(icon)
 	app.exec()
+	

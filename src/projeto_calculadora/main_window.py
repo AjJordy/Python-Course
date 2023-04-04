@@ -1,7 +1,8 @@
 
+from buttons import Button, ButtonsGrid
 from display import Display
 from info import Info
-from PySide6.QtWidgets import QLabel, QMainWindow, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget
 
 
 class MainWindow(QMainWindow):
@@ -26,7 +27,11 @@ class MainWindow(QMainWindow):
 		# Display
 		self.display = Display()
 		self.display.setPlaceholderText('Digite algo')
-		self.vLayout.addWidget(self.display)		
+		self.vLayout.addWidget(self.display)	
+
+		# Grid
+		self.buttonsGrid = ButtonsGrid()
+		self.vLayout.addLayout(self.buttonsGrid)		
 
 		# Ultima coisa a ser feita
 		self.adjustSize()
