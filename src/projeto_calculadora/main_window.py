@@ -21,16 +21,16 @@ class MainWindow(QMainWindow):
 		# self.vLayout.addWidget(self.label1)			
 
 		# Info
-		info = Info('2.0 ^ 10.0 = 1024')
+		info = Info('')
 		self.vLayout.addWidget(info)
 
 		# Display
 		self.display = Display()
-		self.display.setPlaceholderText('Digite algo')
+		# self.display.setPlaceholderText('Digite algo')
 		self.vLayout.addWidget(self.display)	
 
 		# Grid
-		self.buttonsGrid = ButtonsGrid(self.display)
+		self.buttonsGrid = ButtonsGrid(self.display, info)
 		self.vLayout.addLayout(self.buttonsGrid)		
 
 		# Ultima coisa a ser feita
