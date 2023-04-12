@@ -1,10 +1,11 @@
 
-from typing import TYPE_CHECKING
+# from typing import TYPE_CHECKING
 
-if TYPE_CHECKING: # Avoid circular import 
-	from info import Info
-	from display import Display
+import math
 
+from display import Display
+# if TYPE_CHECKING: # Avoid circular import 
+from info import Info
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QGridLayout, QPushButton
 from utils import isNumOrDot, isValidNumber
@@ -27,11 +28,15 @@ class Button(QPushButton):
 		
 
 class ButtonsGrid(QGridLayout):
-	def __init__(self, display: 'Display', info: 'Info', *args, **kwargs) -> None:
+	def __init__(self, display: Display, info: Info, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 		self.display = display		
 		self.info = info
 		self._equation = ''
+		self._left = None
+		self._right = None
+		self._op = None
+
 
 		self._gridMask = [
 			['C', '◀', '^', '/'],
@@ -77,24 +82,36 @@ class ButtonsGrid(QGridLayout):
 		button.clicked.connect(slot)
 
 	def _configSpecialButton(self, button: Button):
-		text = button.text()
+		text = button.text()		
 		if text == 'C':
 			# slot = self._makeSlot(self._clear, 'Mensagem')
 			# self._connectButtonClicked(button, slot)
-			# button.clicked.connect(self.display.clear)
-			button.clicked.connect(self._clear)
+			# button.clicked.connect(self.display.clear)			
+			self._connectButtonClicked(button, self._clear)
 
-	def _makeSlot(self, func, *args, **kwargs):
-		
+		if text in '+-/*^':
+			self._connectButtonClicked(
+				button, 
+				self._makeSlot(self._operatorClicked, button)
+			)
+
+		if text in '=':
+			self._connectButtonClicked(button, self._eq)
+
+		if text in  '◀':
+			self._connectButtonClicked(button, self.display.backspace)
+
+	def _makeSlot(self, func, *args, **kwargs):		
 		@Slot(bool)
 		def realSlot(_): 
 			func(*args, **kwargs)
 		return realSlot
 
-	def _insertBtnTextToDisplay(self, button): # checked
-		buttonText = button.text()
-		newDisplayValue = self.display.text()
+	def _insertBtnTextToDisplay(self, button): 
+		buttonText = button.text()		
+		newDisplayValue = self.display.text() + buttonText
 		if not isValidNumber(newDisplayValue):
+			print('invalid number')
 			return 
 		
 		self.display.insert(buttonText)
@@ -102,5 +119,52 @@ class ButtonsGrid(QGridLayout):
 
 	def _clear(self): #, msg):
 		# print('Vou fazer outra coisa', msg)
+		self._left = None
+		self._right = None
+		self._op = None
+		self.equation = ''
 		self.display.clear()
 
+	def _operatorClicked(self, button):
+		buttonText = button.text()
+		displayText = self.display.text()
+		self.display.clear()
+
+		if not isValidNumber(displayText) and self._left is None:
+			return
+		
+		if self._left is None:
+			self._left = float(displayText)
+
+		self._op = buttonText
+		self.equation = f'{self._left} {self._op} ??'
+
+	def _eq(self):
+		displayText = self.display.text()
+	
+		if not isValidNumber(displayText):
+			return 
+		
+		self._right = float(displayText)
+		self.equation = f'{self._left} {self._op} {self._right}'
+		result = 'error'
+
+		try:
+			if '^' in self.equation and isinstance(self._left, float):
+				result = math.pow(self._left, self._right)
+			else:
+				result = eval(self.equation)
+		except ZeroDivisionError:
+			print('Zero Division error')
+		except OverflowError:
+			print('Overflow error')
+		
+		self.display.clear()
+		self.info.setText(f'{self.equation} = {result}')
+		self._left = result
+		self._right = None
+
+		if result == 'error':
+			self._left = None
+			
+		

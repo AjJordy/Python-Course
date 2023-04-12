@@ -21,7 +21,7 @@ class MainWindow(QMainWindow):
 		# self.vLayout.addWidget(self.label1)			
 
 		# Info
-		info = Info('')
+		info = Info('Digite algum valor')
 		self.vLayout.addWidget(info)
 
 		# Display

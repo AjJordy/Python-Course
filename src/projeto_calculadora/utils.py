@@ -15,4 +15,4 @@ def isValidNumber(string: str):
 		return True
 	except ValueError:
 		return False
-		print('Deu ruim')
+		
