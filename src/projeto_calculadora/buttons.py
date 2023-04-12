@@ -1,11 +1,12 @@
 
-# from typing import TYPE_CHECKING
-
 import math
+from typing import TYPE_CHECKING
 
-from display import Display
-# if TYPE_CHECKING: # Avoid circular import 
-from info import Info
+if TYPE_CHECKING: # Avoid circular import 
+	from display import Display
+	from info import Info
+	from main_window import MainWindow
+
 from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QGridLayout, QPushButton
 from utils import isNumOrDot, isValidNumber
@@ -28,10 +29,11 @@ class Button(QPushButton):
 		
 
 class ButtonsGrid(QGridLayout):
-	def __init__(self, display: Display, info: Info, *args, **kwargs) -> None:
+	def __init__(self, display: 'Display', info: 'Info', window: 'MainWindow', *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 		self.display = display		
 		self.info = info
+		self.window = window
 		self._equation = ''
 		self._left = None
 		self._right = None
@@ -110,8 +112,7 @@ class ButtonsGrid(QGridLayout):
 	def _insertBtnTextToDisplay(self, button): 
 		buttonText = button.text()		
 		newDisplayValue = self.display.text() + buttonText
-		if not isValidNumber(newDisplayValue):
-			print('invalid number')
+		if not isValidNumber(newDisplayValue):			
 			return 
 		
 		self.display.insert(buttonText)
@@ -131,6 +132,7 @@ class ButtonsGrid(QGridLayout):
 		self.display.clear()
 
 		if not isValidNumber(displayText) and self._left is None:
+			self._showError('Você não escreveu nada')
 			return
 		
 		if self._left is None:
@@ -143,6 +145,7 @@ class ButtonsGrid(QGridLayout):
 		displayText = self.display.text()
 	
 		if not isValidNumber(displayText):
+			self._showError('Você não digitou o outro numero')
 			return 
 		
 		self._right = float(displayText)
@@ -155,8 +158,10 @@ class ButtonsGrid(QGridLayout):
 			else:
 				result = eval(self.equation)
 		except ZeroDivisionError:
+			self._showError('Divisão por zero')
 			print('Zero Division error')
 		except OverflowError:
+			self._showError('Número muito grande')
 			print('Overflow error')
 		
 		self.display.clear()
@@ -166,5 +171,27 @@ class ButtonsGrid(QGridLayout):
 
 		if result == 'error':
 			self._left = None
-			
-		
+
+	def _showInfo(self, text):
+		msgBox = self.window.makeMsgBox()
+		msgBox.setText(text)
+		msgBox.setIcon(msgBox.Icon.Information)
+	
+	def _showError(self, text):
+		msgBox = self.window.makeMsgBox()
+		msgBox.setText(text)
+		msgBox.setIcon(msgBox.Icon.Critical)
+		# msgBox.setStandardButtons(msgBox.StandardButton.NoToAll)
+		# msgBox.button(msgBox.StandardButton.NoToAll).setText('Não para todos')
+		msgBox.setStandardButtons(
+			# msgBox.StandardButton.Cancel |
+			# msgBox.StandardButton.Save |
+			msgBox.StandardButton.Ok			
+		)
+		result = msgBox.exec()
+		if result == msgBox.StandardButton.Ok: 
+			print('ok')
+		# elif result == msgBox.StandardButton.Cancel:
+		# 	print('cancel')
+		# elif result == msgBox.StandardButton.Save:
+		# 	print('save')

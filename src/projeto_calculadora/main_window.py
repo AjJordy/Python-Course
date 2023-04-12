@@ -2,7 +2,7 @@
 from buttons import Button, ButtonsGrid
 from display import Display
 from info import Info
-from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QMainWindow, QMessageBox, QVBoxLayout, QWidget
 
 
 class MainWindow(QMainWindow):
@@ -30,9 +30,12 @@ class MainWindow(QMainWindow):
 		self.vLayout.addWidget(self.display)	
 
 		# Grid
-		self.buttonsGrid = ButtonsGrid(self.display, info)
+		self.buttonsGrid = ButtonsGrid(self.display, info, self)
 		self.vLayout.addLayout(self.buttonsGrid)		
 
 		# Ultima coisa a ser feita
 		self.adjustSize()
 		self.setFixedSize(self.width(), self.height())
+
+	def makeMsgBox(self):		
+		return QMessageBox(self)
