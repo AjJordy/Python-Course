@@ -2,3 +2,5 @@ venv
 .env
 chromedriver.exe
 *.pyc
+build
+dist
