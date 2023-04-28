@@ -16,3 +16,9 @@ def isValidNumber(string: str):
 	except ValueError:
 		return False
 		
+
+def convertToNumber(string: str):
+	number = float(string)
+	if number.is_integer():
+		number = int(number)
+	return number
