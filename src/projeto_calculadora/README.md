@@ -6,4 +6,8 @@ https://pyinstaller.org/en/stable/
 $ pip install pyinstaller
 
 $ pyinstaller --name="Calculadora" --noconfirm --onefile --add-data='files/;files/' --icon='files/icon.png' --noconsole --clean --log-level=WARN  .\main.py
+
+$ pyinstaller __localcode/Calculadora.spec
+
+#  --distpath --workpath
 ```

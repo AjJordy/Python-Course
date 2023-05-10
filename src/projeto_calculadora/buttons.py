@@ -29,7 +29,9 @@ class Button(QPushButton):
 		
 
 class ButtonsGrid(QGridLayout):
-	def __init__(self, display: 'Display', info: 'Info', window: 'MainWindow', *args, **kwargs) -> None:
+	def __init__(
+			self, display:'Display', info:'Info', window:'MainWindow', *args, **kwargs
+		) -> None:
 		super().__init__(*args, **kwargs)
 		self.display = display		
 		self.info = info
@@ -212,9 +214,7 @@ class ButtonsGrid(QGridLayout):
 		msgBox = self.window.makeMsgBox()
 		msgBox.setText(text)
 		msgBox.setIcon(msgBox.Icon.Critical)
-		msgBox.setStandardButtons(			
-			msgBox.StandardButton.Ok			
-		)
+		msgBox.setStandardButtons(msgBox.StandardButton.Ok)
 		result = msgBox.exec()
 		if result == msgBox.StandardButton.Ok: 
 			print('ok')
