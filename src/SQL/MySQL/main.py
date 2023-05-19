@@ -92,14 +92,20 @@ def insertMany(connection):
 
 def read(connection):
 	with connection.cursor() as cursor:	
-		sql = (
-			f'SELECT * FROM {TABLE_NAME} '
-		)
+		# Fetch all
+		sql = (f'SELECT * FROM {TABLE_NAME} ')
 		cursor.execute(sql)
-		# data = cursor.fetchone()
 		data = cursor.fetchall()
 		for row in data:
 			print(row)
+
+		# Fetch one 
+		sql = (
+			f'SELECT * FROM {TABLE_NAME} '			
+			'WHERE id = %s '
+		)
+		cursor.execute(sql, (5,))
+		data = cursor.fetchone()
 		
 
 
