@@ -107,6 +107,25 @@ def read(connection):
 		cursor.execute(sql, (5,))
 		data = cursor.fetchone()
 		
+def delete(connection):
+	with connection.cursor() as cursor:	
+		sql = (
+			f'DELETE FROM {TABLE_NAME} '
+			'WHERE id = %s'
+		)
+		cursor.execute(sql, (2,))
+	connection.commit()
+
+
+def update(connection):
+	with connection.cursor() as cursor:	
+		sql = (
+			f'UPDATE {TABLE_NAME} '
+			'SET name=%s, age=%s '
+			'WHERE id = %s '
+		)
+		cursor.execute(sql, ('Novo Nome', 28, 5))
+	connection.commit()
 
 
 with connection:	
@@ -114,3 +133,5 @@ with connection:
 	insert(connection)
 	insertMany(connection)
 	read(connection)
+	delete(connection)
+	update(connection)
