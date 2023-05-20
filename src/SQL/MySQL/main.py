@@ -128,6 +128,24 @@ def update(connection):
 	connection.commit()
 
 
+def order(connection):
+	with connection.cursor() as cursor:	
+		sql = (
+			f'SELECT id FROM {TABLE_NAME} '
+			'ORDER BY id DESC '
+			'LIMIT 1 '
+		)
+		cursor.execute(sql)
+		lastFromSelect = cursor.fechone()
+		print('Last id:',lastFromSelect)		
+		print('rowcount:',cursor.rowcount)
+		print('lastrowid:', cursor.lastrowid)
+		# cursor.scroll(-2)
+		# cursor.scroll(1, 'absolute')
+		print('rownumber:',cursor.rownumber)
+	connection.commit()
+
+
 with connection:	
 	create(connection)		
 	insert(connection)
@@ -135,3 +153,4 @@ with connection:
 	read(connection)
 	delete(connection)
 	update(connection)
+	order(connection)
