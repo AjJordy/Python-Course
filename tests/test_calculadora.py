@@ -1,3 +1,18 @@
+try:
+    import sys
+    import os
+
+    sys.path.append(
+        os.path.abspath(
+            os.path.join(
+                os.path.dirname(__file__),
+                '../src/TDD'
+            )
+        )
+    )
+except:
+    raise
+
 import unittest
 from calculadora import soma, subtrai
 
@@ -29,5 +44,5 @@ class TestCalculadora(unittest.TestCase):
         with self.assertRaises(AssertionError):
             soma(10, '10')
 
-            
-unittest.main(verbosity=2)
+if __name__ == '__main__':           
+    unittest.main(verbosity=2)

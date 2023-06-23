@@ -10,5 +10,7 @@ class Pessoa:
     def obter_todos_os_dados(self):
         resposta = requests.get('https://teste.com')
         if resposta.ok:
-            return 'CONECTADO'        
+            self.dados_obtidos = True
+            return 'CONECTADO'       
+        self.dados_obtidos = False
         return 'ERRO 404'
